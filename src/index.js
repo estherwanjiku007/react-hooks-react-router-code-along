@@ -1,67 +1,22 @@
 import React from "react";
-import ReactDOM from "react-dom";
-/* Add NavLink to import */
-import { BrowserRouter, Route, NavLink,Routes} from "react-router-dom";
-
-/* Add basic styling for NavLinks */
-const linkStyles = {
-  display: "inline-block",
-  width: "50px",
-  padding: "12px",
-  margin: "0 6px 6px",
-  background: "blue",
-  textDecoration: "none",
-  color: "white",
-};
-
-/* define the NavBar component */
-function NavBar() {
-  return (
-    <div>
-      <NavLink
-        to="/"
-        /* set exact so it knows to only set activeStyle when route is deeply equal to link */
-        exact
-        /* add styling to Navlink */
-        style={linkStyles}
-        /* add prop for activeStyle */
-        activeStyle={{
-          background: "darkblue",
-        }}
-      >
-        Home
-      </NavLink>
-      <NavLink
-        to="/about"
-        exact
-        style={linkStyles}
-        activeStyle={{
-          background: "darkblue",
-        }}
-      >
-        About
-      </NavLink>
-      <NavLink
-        to="/login"
-        exact
-        style={linkStyles}
-        activeStyle={{
-          background: "darkblue",
-        }}
-      >
-        Login
-      </NavLink>
-    </div>
-  );
-}
-
+import { BrowserRouter,NavLink,Route,Routes } from "react-router-dom";
 function Home() {
   return <h1>Home!</h1>;
 }
 
+
+// src/components/About.js
+import React from "react";
+
 function About() {
   return <h1>This is my about component!</h1>;
 }
+
+
+
+
+// src/components/Login.js
+import React from "react";
 
 function Login() {
   return (
@@ -80,21 +35,57 @@ function Login() {
   );
 }
 
-/* add the NavBar component to our render method */
+function NavBar(){
+  return (
+    <div>
+      <NavLink to="/"
+      exact
+      style={linkStyles}
+      activeStyle={{
+        background: "darkblue",
+      }}
+      >
+        Home
+      </NavLink>
+      <NavLink to="/about"
+      exact
+      style={linkStyles}
+      activeStyle={{
+        background: "darkblue",
+      }}
+      > 
+      About
+      </NavLink>
+      <NavLink to="/login"
+      exact
+      style={linkStyles}
+      activeStyle={{
+        background: "darkblue",
+      }}
+      > 
+      Login
+      </NavLink>
+    </div>
+  )
+}
+
+function App(){
+  return (
+    <div>
+      <NavBar/>
+      <Routes>
+        <Route exact path="/" element={<Home/>}/>
+        <Route exact path="/login" element={<Login/>}/>
+        <Route exact path="/about" element={<About/>}/>
+      </Routes>
+    </div>
+  )
+}
 ReactDOM.render(
   <BrowserRouter>
-    <NavBar />
-    <Routes>  
-      <Route exact path="/about">
-        <About />
-      </Route>
-      <Route exact path="/login">
-        <Login />
-      </Route>
-      <Route exact path="/">
-        <Home />
-      </Route> 
-      </Routes>  
-  </BrowserRouter>,
-  document.getElementById("root")
-);
+  <App/>
+  </BrowserRouter>
+)
+
+
+// src/components/NavBar.js
